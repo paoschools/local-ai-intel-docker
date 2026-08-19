@@ -35,17 +35,10 @@ http://host.docker.internal:11434
 
 ## 1. เตรียมโฟลเดอร์
 
-เปิด PowerShell:
-
-```powershell
-Set-ExecutionPolicy -Scope Process Bypass
-.\setup-folders.ps1
-```
-
 ระบบจะสร้าง:
 
 ```text
-D:\Local-AI\
+\Local-AI-INTEL-DOCKER\
 ├─ open-webui\data
 ├─ postgres\data
 ├─ nodered\data

@@ -9,7 +9,7 @@ services:
       OLLAMA_BASE_URL: "http://host.docker.internal:11434"
       WEBUI_NAME: "Local AI R&D"
     volumes:
-      - "D:/Local-AI/open-webui/data:/app/backend/data"
+      - "./open-webui/data:/app/backend/data"
     networks:
       - local-ai-network
 
@@ -24,7 +24,7 @@ services:
       POSTGRES_USER: local_ai
       POSTGRES_PASSWORD: change_this_password
     volumes:
-      - "D:/Local-AI/postgres/data:/var/lib/postgresql/data"
+      - "./postgres/data:/var/lib/postgresql/data"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U local_ai -d local_ai"]
       interval: 10s
@@ -43,8 +43,8 @@ services:
       TZ: "Asia/Bangkok"
       OLLAMA_URL: "http://host.docker.internal:11434"
     volumes:
-      - "D:/Local-AI/nodered/data:/data"
-      - "D:/Local-AI/documents:/documents"
+      - "./nodered/data:/data"
+      - "./documents:/documents"
     depends_on:
       postgres:
         condition: service_healthy
