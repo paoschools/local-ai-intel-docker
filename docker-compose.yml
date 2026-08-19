@@ -51,6 +51,34 @@ services:
     networks:
       - local-ai-network
 
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: local-ai-pgadmin
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: change_this_pgadmin_password
+    volumes:
+      - "./pgadmin/data:/var/lib/pgadmin"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - local-ai-network
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: local-ai-portainer
+    restart: unless-stopped
+    ports:
+      - "9443:9443"
+      - "8000:8000"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./portainer/data:/data"
+    networks:
+      - local-ai-network
 networks:
   local-ai-network:
     name: local-ai-network
