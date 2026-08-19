@@ -35,6 +35,26 @@ http://host.docker.internal:11434
 
 ## 1. เตรียมโฟลเดอร์
 
+ระบบจะสร้าง Folder:
+```powershell
+mkdir D:\Local-AI-INTEL-DOCKER
+mkdir D:\Local-AI-INTEL-DOCKER\ollama
+mkdir D:\Local-AI-INTEL-DOCKER\ollama\data
+
+mkdir D:\Local-AI-INTEL-DOCKER\open-webui
+mkdir D:\Local-AI-INTEL-DOCKER\open-webui\data
+
+mkdir D:\Local-AI-INTEL-DOCKER\postgres
+mkdir D:\Local-AI-INTEL-DOCKER\postgres\data
+
+mkdir D:\Local-AI-INTEL-DOCKER\nodered
+mkdir D:\Local-AI-INTEL-DOCKER\nodered\data
+
+mkdir D:\Local-AI-INTEL-DOCKER\documents
+mkdir D:\Local-AI-INTEL-DOCKER\documents\original
+mkdir D:\Local-AI-INTEL-DOCKER\documents\ocr
+mkdir D:\Local-AI-INTEL-DOCKER\documents\processed
+```
 ระบบจะสร้าง:
 
 ```text
