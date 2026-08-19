@@ -1,0 +1,13 @@
+# Local data
+ollama/
+open-webui/
+postgres/
+nodered/
+documents/
+
+# Environment / secrets
+.env
+
+# OS
+.DS_Store
+Thumbs.db

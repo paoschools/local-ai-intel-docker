@@ -1,0 +1,57 @@
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: local-ai-webui
+    restart: unless-stopped
+    ports:
+      - "3000:8080"
+    environment:
+      OLLAMA_BASE_URL: "http://host.docker.internal:11434"
+      WEBUI_NAME: "Local AI R&D"
+    volumes:
+      - "D:/Local-AI/open-webui/data:/app/backend/data"
+    networks:
+      - local-ai-network
+
+  postgres:
+    image: pgvector/pgvector:pg17
+    container_name: local-ai-postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: local_ai
+      POSTGRES_USER: local_ai
+      POSTGRES_PASSWORD: change_this_password
+    volumes:
+      - "D:/Local-AI/postgres/data:/var/lib/postgresql/data"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U local_ai -d local_ai"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - local-ai-network
+
+  nodered:
+    image: nodered/node-red:latest
+    container_name: local-ai-nodered
+    restart: unless-stopped
+    ports:
+      - "1880:1880"
+    environment:
+      TZ: "Asia/Bangkok"
+      OLLAMA_URL: "http://host.docker.internal:11434"
+    volumes:
+      - "D:/Local-AI/nodered/data:/data"
+      - "D:/Local-AI/documents:/documents"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - local-ai-network
+
+networks:
+  local-ai-network:
+    name: local-ai-network
+    driver: bridge
