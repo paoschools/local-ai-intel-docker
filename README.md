@@ -2,6 +2,19 @@
 
 ชุดเริ่มต้นสำหรับสร้าง Local AI บน Windows 11 ที่ไม่มี NVIDIA GPU โดยแยก **Ollama รันแบบ Native บน Windows** และให้บริการอื่นรันด้วย Docker Desktop
 
+## Services
+
+| Service | URL / Port | Purpose |
+|---|---|---|
+| Open WebUI | http://localhost:3000 | Chat UI |
+| Node-RED | http://localhost:1880 | Workflow / API / RAG orchestration |
+| PostgreSQL + pgvector | localhost:5432 | Database / Vector search |
+| pgAdmin | http://localhost:8081 | PostgreSQL administration |
+| Portainer CE | https://localhost:9443 | Docker administration |
+| Ollama Native | http://localhost:11434 | Local / Cloud models |
+
+Portainer CE uses HTTPS on port `9443` by default. pgAdmin is exposed on port `8081`.
+
 ## Architecture
 
 ```text
@@ -12,8 +25,10 @@ Windows 11
 └─ Docker Desktop / WSL2
    ├─ Open WebUI       :3000
    ├─ Node-RED         :1880
-   └─ PostgreSQL
-      └─ pgvector      :5432
+   ├─ PostgreSQL       :5432
+   │  └─ pgvector
+   ├─ pgAdmin          :8081
+   └─ Portainer CE     :9443
 ```
 
 Container ติดต่อ Ollama บน Windows ผ่าน:
