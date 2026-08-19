@@ -70,18 +70,7 @@ mkdir D:\Local-AI-INTEL-DOCKER\documents\original
 mkdir D:\Local-AI-INTEL-DOCKER\documents\ocr
 mkdir D:\Local-AI-INTEL-DOCKER\documents\processed
 ```
-ระบบจะสร้าง:
 
-```text
-\Local-AI-INTEL-DOCKER\
-├─ open-webui\data
-├─ postgres\data
-├─ nodered\data
-└─ documents
-   ├─ original
-   ├─ ocr
-   └─ processed
-```
 
 ## 2. ติดตั้งและทดสอบ Ollama
 
